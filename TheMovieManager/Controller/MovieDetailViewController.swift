@@ -32,18 +32,8 @@ class MovieDetailViewController: UIViewController {
         toggleBarButton(watchlistBarButtonItem, enabled: isWatchlist)
         toggleBarButton(favoriteBarButtonItem, enabled: isFavorite)
         
-        if let data = movie.poster {
-            imageView.image = UIImage(data: data)
-        } else if let posterPath = movie.posterPath {
-            TMDBClient.downloadPosterImage(path: posterPath) { data, error in
-                guard let data = data else {
-                    return
-                }
-                let image = UIImage(data: data)
-                self.imageView.image = image
-                
-                self.movie.update( image: data)
-            }
+        if let posterPath = movie.posterPath {
+            imageView.kf.setImage(with: K.ProductionServer.resolvePoster(posterPath))
         }
         
         addSaveNotificationObserver()

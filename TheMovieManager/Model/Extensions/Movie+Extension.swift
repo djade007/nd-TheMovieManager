@@ -31,11 +31,11 @@ extension Movie {
         return movie
     }
     
-    func update(favorite: Bool? = nil, watchList: Bool? = nil, image: Data? = nil) {
+    func update(favorite: Bool? = nil, watchList: Bool? = nil) {
         let itemObjectId = objectID
         let backgroundContext = DataController.shared.backgroundContext
         
-        backgroundContext.performAndWait {
+        backgroundContext.perform {
             let backgroudMovie = backgroundContext.object(with: itemObjectId) as! Movie
             
             if let favorite = favorite {
@@ -44,10 +44,6 @@ extension Movie {
             
             if let watchlist = watchList {
                 backgroudMovie.watchlist = watchlist
-            }
-            
-            if let image = image {
-                backgroudMovie.poster = image
             }
             
             try? backgroundContext.save()
@@ -86,7 +82,7 @@ extension MovieResponse {
         
         if let movie = Movie.find(id: id, context: backgroundContext) {
             // Update favorite or watchlist
-            backgroundContext.performAndWait {
+            backgroundContext.perform {
                 var updated = false
                 
                 if let favorite = favorite, movie.favorite != favorite {
@@ -108,7 +104,7 @@ extension MovieResponse {
         }
         
         
-        backgroundContext.performAndWait {
+        backgroundContext.perform {
             let movie = Movie(context: backgroundContext)
             movie.id = Int32(id)
             movie.posterPath = posterPath

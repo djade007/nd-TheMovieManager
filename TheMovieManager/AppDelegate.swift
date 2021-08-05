@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Auth.shared = Auth()
         
         // setup data controller.
-        DataController.shared = DataController(appDelegate: self)
+        DataController.shared = DataController()
         
         return true
     }

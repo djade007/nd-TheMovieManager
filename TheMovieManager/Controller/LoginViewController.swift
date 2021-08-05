@@ -31,7 +31,7 @@ class LoginViewController: UIViewController {
         setLoggingIn(true)
         TMDBClient.getRequestToken() { success, error in
             if success {
-                UIApplication.shared.open(TMDBClient.Endpoints.webAuth.url, options: [:], completionHandler: nil)
+                UIApplication.shared.open(K.ProductionServer.webAuth(Auth.shared.requestToken), options: [:], completionHandler: nil)
             } else {
                 self.showLoginFailure(message: error?.localizedDescription ?? "")
             }
@@ -81,9 +81,4 @@ class LoginViewController: UIViewController {
         show(alertVC, sender: nil)
     }
     
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
-	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

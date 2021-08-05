@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import Kingfisher
 
 class FavoritesViewController: UIViewController {
     
@@ -87,25 +88,20 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
         
         let movie = fetchedResultsController.object(at: indexPath)
         
-        let id = movie.objectID
+        let placeHolder = UIImage(named: "PosterPlaceholder")
         
         cell.textLabel?.text = movie.title
-        cell.imageView?.image = UIImage(named: "PosterPlaceholder")
+        cell.imageView?.image = placeHolder
         
-        if let poster = movie.poster {
-            let image = UIImage(data: poster)
-            cell.imageView?.image = image
-        } else if let posterPath = movie.posterPath {
-            TMDBClient.downloadPosterImage(path: posterPath) { data, error in
-                guard let data = data else {
-                    return
-                }
-                
-                let backgroundContext = DataController.shared.backgroundContext
-                backgroundContext.perform {
-                    let backgroundMovie = backgroundContext.object(with: id) as! Movie
-                    backgroundMovie.poster = data
-                    try? backgroundContext.save()
+        if let posterPath = movie.posterPath {
+            cell.imageView?.kf.setImage(with: K.ProductionServer.resolvePoster(posterPath), placeholder: placeHolder) {
+                result in
+                switch result {
+                case .success:
+                    cell.setNeedsLayout()
+                    break
+                default:
+                    break
                 }
             }
         }
