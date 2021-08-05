@@ -11,14 +11,23 @@ import CoreData
 extension UIViewController {
     
     @IBAction func logoutTapped(_ sender: UIBarButtonItem) {
-        
-        self.clearCoreData()
-        TMDBClient.logout {
-            DispatchQueue.main.async {
-                Auth.shared.clear()
-                self.goBackToLogin()
+        promptLogout()
+    }
+    
+    private func promptLogout() {
+        let alertVC = UIAlertController(title: "Confirm", message: "Are you sure you want to logout?", preferredStyle: .alert)
+        let logoutAction = UIAlertAction(title: "Logout", style: .destructive) { _ in
+            self.clearCoreData()
+            TMDBClient.logout {
+                DispatchQueue.main.async {
+                    Auth.shared.clear()
+                    self.goBackToLogin()
+                }
             }
         }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        [logoutAction, cancelAction].forEach { alertVC.addAction($0) }
+        present(alertVC, animated: true)
     }
     
     private func clearCoreData() {
