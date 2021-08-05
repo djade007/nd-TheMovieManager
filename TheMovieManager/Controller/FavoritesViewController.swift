@@ -10,10 +10,11 @@ import CoreData
 import Kingfisher
 
 class FavoritesViewController: UIViewController {
-    
-    var fetchedResultsController:NSFetchedResultsController<Movie>!
-    
+    // MARK: Outlets
     @IBOutlet weak var tableView: UITableView!
+    
+    // MARK: Properties
+    var fetchedResultsController:NSFetchedResultsController<Movie>!
     
     
     fileprivate func setUpFetchResultsController() {
@@ -34,7 +35,7 @@ class FavoritesViewController: UIViewController {
         }
     }
     
-    
+    // MARK: LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -74,6 +75,7 @@ class FavoritesViewController: UIViewController {
     
 }
 
+// MARK: UITable Delegates
 extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return fetchedResultsController.sections?.count ?? 1
@@ -114,7 +116,7 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-
+// Mark: NSFetchedResultsControllerDelegate
 extension FavoritesViewController: NSFetchedResultsControllerDelegate {
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         switch type {

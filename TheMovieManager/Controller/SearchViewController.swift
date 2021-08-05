@@ -9,10 +9,11 @@ import UIKit
 import Alamofire
 
 class SearchViewController: UIViewController {
-    
+    // MARK: Outlets
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
+    // MARK: Properties
     var movies = [MovieResponse]()
     
     var selectedIndex = 0
@@ -28,6 +29,7 @@ class SearchViewController: UIViewController {
     
 }
 
+// MARK: UISearchBarDelegate
 extension SearchViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -55,6 +57,7 @@ extension SearchViewController: UISearchBarDelegate {
     
 }
 
+// Mark: TableView Delegates
 extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {

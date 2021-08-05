@@ -8,6 +8,7 @@
 import UIKit
 
 class MovieDetailViewController: UIViewController {
+    // MARK: Properties
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var watchlistBarButtonItem: UIBarButtonItem!
@@ -24,6 +25,7 @@ class MovieDetailViewController: UIViewController {
         return movie.favorite
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,6 +41,7 @@ class MovieDetailViewController: UIViewController {
         addSaveNotificationObserver()
     }
     
+    // MARK: LifeCycles
     @IBAction func watchlistButtonTapped(_ sender: UIBarButtonItem) {
         TMDBClient.markWatchlist(movieId: Int(movie.id), watchlist: !isWatchlist, completion: handleWatchlistResponse(success:error:))
     }
@@ -47,6 +50,7 @@ class MovieDetailViewController: UIViewController {
         TMDBClient.markFavorite(movieId: Int(movie.id), favorite: !isFavorite, completion: handleFavoriteResponse(success:error:))
     }
     
+    // MARK: Reponse handlers
     func handleWatchlistResponse(success: Bool, error: Error?) {
         if success {
             movie.update(watchList: !isWatchlist)
@@ -73,6 +77,7 @@ class MovieDetailViewController: UIViewController {
 }
 
 
+// MARK: Notfication observers
 extension MovieDetailViewController {
     func addSaveNotificationObserver() {
         removeSaveNotificationObserver()

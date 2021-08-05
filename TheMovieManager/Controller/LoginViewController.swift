@@ -15,6 +15,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginViaWebsiteButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    // MARK: LifeCycles
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -22,6 +23,7 @@ class LoginViewController: UIViewController {
         passwordTextField.text = ""
     }
     
+    // MARK: Button actions
     @IBAction func loginTapped(_ sender: UIButton) {
         setLoggingIn(true)
         TMDBClient.getRequestToken(completion: handleRequestTokenResponse(success:error:))
@@ -38,6 +40,7 @@ class LoginViewController: UIViewController {
         }
     }
     
+    // MARK: Reponse handlers
     func handleRequestTokenResponse(success: Bool, error: Error?) {
         if success {
             TMDBClient.login(username: emailTextField.text ?? "", password: passwordTextField.text ?? "", completion: handleLoginResponse(success:error:))
@@ -63,6 +66,7 @@ class LoginViewController: UIViewController {
         }
     }
     
+    // MARK: UI Updates
     func setLoggingIn(_ loggingIn: Bool) {
         if loggingIn {
             activityIndicator.startAnimating()
@@ -75,6 +79,7 @@ class LoginViewController: UIViewController {
         loginViaWebsiteButton.isEnabled = !loggingIn
     }
     
+    // MARK: Alert functions
     func showLoginFailure(message: String) {
         let alertVC = UIAlertController(title: "Login Failed", message: message, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))

@@ -9,10 +9,11 @@ import UIKit
 import CoreData
 
 class WatchlistViewController: UIViewController {
-    
-    var fetchedResultsController:NSFetchedResultsController<Movie>!
-    
+    // MARK: Outlets
     @IBOutlet weak var tableView: UITableView!
+    
+    // MARK: Properties
+    var fetchedResultsController:NSFetchedResultsController<Movie>!
     
     fileprivate func setUpFetchResultsController() {
         let fetchRequest: NSFetchRequest<Movie> = Movie.fetchRequest()
@@ -33,6 +34,7 @@ class WatchlistViewController: UIViewController {
         }
     }
     
+    // MARK: LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -72,6 +74,7 @@ class WatchlistViewController: UIViewController {
     
 }
 
+// Mark: TableView Delegates
 extension WatchlistViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -114,6 +117,7 @@ extension WatchlistViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 
+// Mark: NSFetchedResultsControllerDelegate
 extension WatchlistViewController: NSFetchedResultsControllerDelegate {
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         switch type {

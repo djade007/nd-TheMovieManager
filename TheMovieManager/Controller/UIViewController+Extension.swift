@@ -8,6 +8,8 @@
 import UIKit
 import CoreData
 
+
+// Mark: Logout actions
 extension UIViewController {
     
     @IBAction func logoutTapped(_ sender: UIBarButtonItem) {
