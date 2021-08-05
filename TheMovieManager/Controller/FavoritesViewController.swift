@@ -12,11 +12,12 @@ import Kingfisher
 class FavoritesViewController: UIViewController {
     // MARK: Outlets
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // MARK: Properties
     var fetchedResultsController:NSFetchedResultsController<Movie>!
     
-    
+    // Mark: Helper methods
     fileprivate func setUpFetchResultsController() {
         let fetchRequest: NSFetchRequest<Movie> = Movie.fetchRequest()
         
@@ -27,6 +28,7 @@ class FavoritesViewController: UIViewController {
         
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: DataController.shared.viewContext, sectionNameKeyPath: nil, cacheName: "movies-favorites")
         
+        fetchedResultsController.delegate = self
         
         do {
             try fetchedResultsController.performFetch()
@@ -35,31 +37,44 @@ class FavoritesViewController: UIViewController {
         }
     }
     
+    fileprivate func startLoading(_ loading: Bool) {
+        if loading {
+            activityIndicator.startAnimating()
+        } else {
+            guard activityIndicator.isAnimating else {
+                return
+            }
+            
+            activityIndicator.stopAnimating()
+        }
+        
+    }
+    
     // MARK: LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
+        startLoading(true)
         
         setUpFetchResultsController()
         
         // Update records
         TMDBClient.getFavorites() { movies, error in
+            self.startLoading(false)
             movies.forEach() {
                 (item) in
                 item.saveOrUpdateMovie(favorite: true)
             }
+            
+            if let error = error {
+                guard self.fetchedResultsController.sections?[0].numberOfObjects ?? 0 < 1 else {
+                    // Don't show error message if cached data already exists
+                    return
+                }
+                self.alertError(title: "Failed to load your favorites", message: error.localizedDescription)
+            }
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        fetchedResultsController.delegate = self
-        tableView.reloadData()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        fetchedResultsController.delegate = nil
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
@@ -121,6 +136,7 @@ extension FavoritesViewController: NSFetchedResultsControllerDelegate {
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         switch type {
         case .insert:
+            startLoading(false)
             tableView.insertRows(at: [newIndexPath!], with: .fade)
             break
         case .update:

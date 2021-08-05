@@ -19,13 +19,14 @@ extension UIViewController {
     private func promptLogout() {
         let alertVC = UIAlertController(title: "Confirm", message: "Are you sure you want to logout?", preferredStyle: .alert)
         let logoutAction = UIAlertAction(title: "Logout", style: .destructive) { _ in
+            // api logout is optional
+            // No need to wait for the response before proceeding with clearing user data
+            TMDBClient.logout{}
+            
             self.clearCoreData()
-            TMDBClient.logout {
-                DispatchQueue.main.async {
-                    Auth.shared.clear()
-                    self.goBackToLogin()
-                }
-            }
+            Auth.shared.clear()
+            
+            self.goBackToLogin()
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         [logoutAction, cancelAction].forEach { alertVC.addAction($0) }
@@ -53,11 +54,22 @@ extension UIViewController {
     
         let rootVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
            
-        let sceneDelegate = self.view.window!.windowScene!.delegate as! SceneDelegate
-        
-        sceneDelegate.window?.rootViewController = rootVC
-        
-        sceneDelegate.window?.makeKeyAndVisible()
+        if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
+            sceneDelegate.window?.rootViewController = rootVC
+            
+            sceneDelegate.window?.makeKeyAndVisible()
+        } else {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.window?.rootViewController = rootVC
+            appDelegate.window?.makeKeyAndVisible()
+        }
+    }
+    
+    // Mark: Error alerts
+    func alertError(title: String, message: String) {
+        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "Ok", style: .default))
+        present(alertVC, animated: true)
     }
     
 }

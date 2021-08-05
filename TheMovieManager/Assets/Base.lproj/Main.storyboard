@@ -166,12 +166,17 @@
                                     <outlet property="delegate" destination="IfO-JR-UB4" id="iEz-pz-64v"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="qiY-XF-vP3">
+                                <rect key="frame" x="177.5" y="317" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="SGG-Ve-lIg"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="qiY-XF-vP3" firstAttribute="centerX" secondItem="SGG-Ve-lIg" secondAttribute="centerX" id="1kA-JF-jEJ"/>
                             <constraint firstItem="SvX-SL-BER" firstAttribute="leading" secondItem="SGG-Ve-lIg" secondAttribute="leading" id="IWu-pY-SNO"/>
                             <constraint firstItem="SGG-Ve-lIg" firstAttribute="trailing" secondItem="SvX-SL-BER" secondAttribute="trailing" id="RAs-cJ-6el"/>
+                            <constraint firstItem="qiY-XF-vP3" firstAttribute="centerY" secondItem="SGG-Ve-lIg" secondAttribute="centerY" id="cIg-db-hhs"/>
                             <constraint firstItem="SvX-SL-BER" firstAttribute="top" secondItem="SGG-Ve-lIg" secondAttribute="top" id="p9Q-VH-vOu"/>
                             <constraint firstItem="SGG-Ve-lIg" firstAttribute="bottom" secondItem="SvX-SL-BER" secondAttribute="bottom" id="xbO-Sg-PHF"/>
                         </constraints>
@@ -184,6 +189,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="qiY-XF-vP3" id="GrE-68-0v5"/>
                         <outlet property="tableView" destination="SvX-SL-BER" id="45B-ii-gpY"/>
                         <segue destination="bMS-kJ-dg1" kind="show" identifier="showDetail" id="EXb-qb-M1h"/>
                     </connections>
@@ -235,6 +241,9 @@
                                     <outlet property="delegate" destination="ubh-7q-yMI" id="Z6r-XF-4Hl"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="R1S-d2-zyI">
+                                <rect key="frame" x="177.5" y="317" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3jn-B3-sZ0"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -242,7 +251,9 @@
                             <constraint firstItem="CCl-fb-kBp" firstAttribute="leading" secondItem="3jn-B3-sZ0" secondAttribute="leading" id="T0f-kn-Tgu"/>
                             <constraint firstItem="3jn-B3-sZ0" firstAttribute="bottom" secondItem="CCl-fb-kBp" secondAttribute="bottom" id="Tyc-JQ-rEJ"/>
                             <constraint firstItem="CCl-fb-kBp" firstAttribute="top" secondItem="3jn-B3-sZ0" secondAttribute="top" id="Y76-vU-FfC"/>
+                            <constraint firstItem="R1S-d2-zyI" firstAttribute="centerY" secondItem="3jn-B3-sZ0" secondAttribute="centerY" id="gny-tL-WaR"/>
                             <constraint firstItem="3jn-B3-sZ0" firstAttribute="trailing" secondItem="CCl-fb-kBp" secondAttribute="trailing" id="uqn-tv-JCP"/>
+                            <constraint firstItem="R1S-d2-zyI" firstAttribute="centerX" secondItem="3jn-B3-sZ0" secondAttribute="centerX" id="xg1-Pk-Tjs"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Watchlist" id="1MN-MV-MzH">
@@ -253,6 +264,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="R1S-d2-zyI" id="ykg-UM-xch"/>
                         <outlet property="tableView" destination="CCl-fb-kBp" id="tN3-iI-Ek2"/>
                         <segue destination="bMS-kJ-dg1" kind="show" identifier="showDetail" id="co5-nL-1jj"/>
                     </connections>
@@ -383,6 +395,9 @@
                                     <outlet property="delegate" destination="yrH-SK-k4n" id="eZg-yh-1TO"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="mpZ-GF-5wx">
+                                <rect key="frame" x="177.5" y="317" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="YdI-4U-uEf"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -390,7 +405,9 @@
                             <constraint firstItem="SDK-mv-Sbc" firstAttribute="top" secondItem="YdI-4U-uEf" secondAttribute="top" constant="56" id="0qD-tk-f2Z"/>
                             <constraint firstItem="lAX-ep-s5T" firstAttribute="top" secondItem="YdI-4U-uEf" secondAttribute="top" id="61S-DF-wn4"/>
                             <constraint firstItem="YdI-4U-uEf" firstAttribute="trailing" secondItem="SDK-mv-Sbc" secondAttribute="trailing" id="HaP-WY-eli"/>
+                            <constraint firstItem="mpZ-GF-5wx" firstAttribute="centerX" secondItem="YdI-4U-uEf" secondAttribute="centerX" id="ISx-qj-zei"/>
                             <constraint firstItem="YdI-4U-uEf" firstAttribute="trailing" secondItem="lAX-ep-s5T" secondAttribute="trailing" id="SGl-5F-0b7"/>
+                            <constraint firstItem="mpZ-GF-5wx" firstAttribute="centerY" secondItem="YdI-4U-uEf" secondAttribute="centerY" id="aus-MN-bHF"/>
                             <constraint firstItem="YdI-4U-uEf" firstAttribute="bottom" secondItem="SDK-mv-Sbc" secondAttribute="bottom" id="dlb-mI-sbB"/>
                             <constraint firstItem="SDK-mv-Sbc" firstAttribute="leading" secondItem="YdI-4U-uEf" secondAttribute="leading" id="fZV-P2-weR"/>
                             <constraint firstItem="lAX-ep-s5T" firstAttribute="leading" secondItem="YdI-4U-uEf" secondAttribute="leading" id="vM4-ag-rf7"/>
@@ -404,6 +421,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="mpZ-GF-5wx" id="XSN-av-3Go"/>
                         <outlet property="searchBar" destination="lAX-ep-s5T" id="7yT-dp-8kH"/>
                         <outlet property="tableView" destination="SDK-mv-Sbc" id="Z31-4M-GUm"/>
                         <segue destination="bMS-kJ-dg1" kind="show" identifier="showDetail" id="FxJ-ZB-wWk"/>
@@ -415,7 +433,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="EXb-qb-M1h"/>
+        <segue reference="FxJ-ZB-wWk"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Camera" width="64" height="64"/>

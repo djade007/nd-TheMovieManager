@@ -35,7 +35,9 @@ class MovieDetailViewController: UIViewController {
         toggleBarButton(favoriteBarButtonItem, enabled: isFavorite)
         
         if let posterPath = movie.posterPath {
-            imageView.kf.setImage(with: K.ProductionServer.resolvePoster(posterPath))
+            let placeHolder = UIImage(named: "PosterPlaceholder")
+            
+            imageView.kf.setImage(with: K.ProductionServer.resolvePoster(posterPath), placeholder: placeHolder)
         }
         
         addSaveNotificationObserver()

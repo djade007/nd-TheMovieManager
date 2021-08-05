@@ -51,7 +51,7 @@ class TMDBClient {
             }
     }
     
-    class func login(username: String, password: String, completion: @escaping (Bool, Error?) -> Void) {
+    class func login(username: String, password: String, completion: @escaping (Bool, String?) -> Void) {
         AF.request(TMDBRouter.login(username: username, password: password))
             .responseDecodable(of: RequestTokenResponse.self) {
                 (response) in
@@ -59,7 +59,12 @@ class TMDBClient {
                     auth.requestToken = data.requestToken
                     completion(true, nil)
                 } else {
-                    completion(false, response.error)
+                    var error = response.error?.localizedDescription
+                    
+                    if response.response?.statusCode == 401 {
+                        error = "Invalid username or password"
+                    }
+                    completion(false, error)
                 }
             }
     }

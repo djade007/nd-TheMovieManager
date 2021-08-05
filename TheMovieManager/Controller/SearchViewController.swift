@@ -12,6 +12,7 @@ class SearchViewController: UIViewController {
     // MARK: Outlets
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // MARK: Properties
     var movies = [MovieResponse]()
@@ -34,11 +35,14 @@ extension SearchViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         currentRequest?.cancel()
-        
+        activityIndicator.startAnimating()
         currentRequest = TMDBClient.search(query: searchText) { movies, error in
             self.movies = movies
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
+            self.activityIndicator.stopAnimating()
+            self.tableView.reloadData()
+            
+            if let error = error {
+                self.alertError(title: "Failed to Search", message: error.localizedDescription)
             }
         }
     }

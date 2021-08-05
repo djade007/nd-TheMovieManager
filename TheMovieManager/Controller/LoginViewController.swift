@@ -45,15 +45,17 @@ class LoginViewController: UIViewController {
         if success {
             TMDBClient.login(username: emailTextField.text ?? "", password: passwordTextField.text ?? "", completion: handleLoginResponse(success:error:))
         } else {
+            setLoggingIn(false)
             showLoginFailure(message: error?.localizedDescription ?? "")
         }
     }
     
-    func handleLoginResponse(success: Bool, error: Error?) {
+    func handleLoginResponse(success: Bool, error: String?) {
         if success {
             TMDBClient.createSessionId(completion: handleSessionResponse(success:error:))
         } else {
-            showLoginFailure(message: error?.localizedDescription ?? "")
+            setLoggingIn(false)
+            showLoginFailure(message: error)
         }
     }
     
@@ -80,10 +82,8 @@ class LoginViewController: UIViewController {
     }
     
     // MARK: Alert functions
-    func showLoginFailure(message: String) {
-        let alertVC = UIAlertController(title: "Login Failed", message: message, preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        show(alertVC, sender: nil)
+    func showLoginFailure(message: String?) {
+        alertError(title: "Login Failed", message: message ?? "Internet connection error")
     }
     
 }

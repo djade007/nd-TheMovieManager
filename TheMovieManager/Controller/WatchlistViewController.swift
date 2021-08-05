@@ -11,10 +11,14 @@ import CoreData
 class WatchlistViewController: UIViewController {
     // MARK: Outlets
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    private var blockOperations = [BlockOperation]()
     
     // MARK: Properties
     var fetchedResultsController:NSFetchedResultsController<Movie>!
     
+    // Mark: Helper methods
     fileprivate func setUpFetchResultsController() {
         let fetchRequest: NSFetchRequest<Movie> = Movie.fetchRequest()
         
@@ -34,30 +38,43 @@ class WatchlistViewController: UIViewController {
         }
     }
     
+    fileprivate func startLoading(_ loading: Bool) {
+        if loading {
+            activityIndicator.startAnimating()
+        } else {
+            guard activityIndicator.isAnimating else {
+                return
+            }
+            
+            activityIndicator.stopAnimating()
+        }
+        
+    }
+    
     // MARK: LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
+        startLoading(true)
         
         setUpFetchResultsController()
     
         // Update records
         TMDBClient.getWatchlist() { movies, error in
+            self.startLoading(false)
+            
             movies.forEach() {
                 (item) in
                 item.saveOrUpdateMovie(watchList: true)
             }
+            
+            if let error = error {
+                guard self.fetchedResultsController.sections?[0].numberOfObjects ?? 0 < 1 else {
+                    // Don't show error message if cached data already exists
+                    return
+                }
+                self.alertError(title: "Failed to load your watchlist", message: error.localizedDescription)
+            }
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        fetchedResultsController.delegate = self
-        tableView.reloadData()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        fetchedResultsController.delegate = nil
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -70,6 +87,11 @@ class WatchlistViewController: UIViewController {
                 tableView.deselectRow(at: selectedIndex, animated: true)
             }
         }
+    }
+    
+    deinit {
+        blockOperations.forEach{ $0.cancel() }
+        blockOperations.removeAll(keepingCapacity: false)
     }
     
 }
@@ -122,22 +144,41 @@ extension WatchlistViewController: NSFetchedResultsControllerDelegate {
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         switch type {
         case .insert:
-            tableView.insertRows(at: [newIndexPath!], with: .fade)
+            startLoading(false)
+            
+            blockOperations.append(BlockOperation(block: { [weak self] in
+                if let this = self {
+                    this.tableView.insertRows(at: [newIndexPath!], with: .fade)
+                }
+            }))
             break
         case .update:
-            tableView.reloadRows(at: [indexPath!], with: .automatic)
+            blockOperations.append(BlockOperation(block: { [weak self] in
+                if let this = self {
+                    this.tableView.reloadRows(at: [indexPath!], with: .automatic)
+                }
+            }))
             break
         case .delete:
-            tableView.deleteRows(at: [indexPath!], with: .fade)
+            blockOperations.append(BlockOperation(block: { [weak self] in
+                if let this = self {
+                    this.tableView.deleteRows(at: [indexPath!], with: .fade)
+                }
+            }))
+            
         default: break
         }
     }
     
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.beginUpdates()
+        blockOperations.removeAll(keepingCapacity: false)
     }
 
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.endUpdates()
+        tableView.performBatchUpdates({ () -> Void in
+            blockOperations.forEach { $0.start() }
+        }, completion: { (finished) -> Void in
+            self.blockOperations.removeAll(keepingCapacity: false)
+        })
     }
 }
