@@ -46,6 +46,8 @@ An authenticated user can **search** for movies, view the movie poster, add to h
 pod install
 ```
 
+- Open `TheMovieManager.xcworkspace` in Xcode
+
 - Update your moviedb API key in `Model/Constants.swift`
 
 - Run the app
