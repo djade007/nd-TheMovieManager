@@ -19,8 +19,7 @@
 		231688652121CA51003C820E /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231688642121CA51003C820E /* FavoritesViewController.swift */; };
 		2316886A2121CADA003C820E /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231688692121CADA003C820E /* LoginButton.swift */; };
 		2316886C2121CAF6003C820E /* TMDBClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2316886B2121CAF6003C820E /* TMDBClient.swift */; };
-		231688732121CB2D003C820E /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231688722121CB2D003C820E /* MovieModel.swift */; };
-		231688752121CB43003C820E /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231688742121CB43003C820E /* Movie.swift */; };
+		231688752121CB43003C820E /* MovieResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231688742121CB43003C820E /* MovieResponse.swift */; };
 		231688772121CB50003C820E /* MovieResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231688762121CB50003C820E /* MovieResults.swift */; };
 		231688792121CB74003C820E /* RequestTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231688782121CB74003C820E /* RequestTokenResponse.swift */; };
 		2316887B2121CB87003C820E /* TMDBResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2316887A2121CB87003C820E /* TMDBResponse.swift */; };
@@ -35,8 +34,11 @@
 		2316888D2122322D003C820E /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2316888C2122322D003C820E /* Colors.swift */; };
 		2316888F2122646A003C820E /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2316888E2122646A003C820E /* GradientView.swift */; };
 		2316889121226AE7003C820E /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2316889021226AE7003C820E /* LoginTextField.swift */; };
+		7503FBF026BB13980013CE49 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7503FBEF26BB13980013CE49 /* DataController.swift */; };
+		7503FBF326BB3FD20013CE49 /* Movie+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7503FBF226BB3FD20013CE49 /* Movie+Extension.swift */; };
 		759E60A526B9E9FF00668B7F /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759E60A426B9E9FF00668B7F /* Auth.swift */; };
 		759E60A726B9F03000668B7F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759E60A626B9F03000668B7F /* SceneDelegate.swift */; };
+		759E60AA26B9F91700668B7F /* TheMovieManager.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 759E60A826B9F91700668B7F /* TheMovieManager.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,8 +56,7 @@
 		231688642121CA51003C820E /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		231688692121CADA003C820E /* LoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
 		2316886B2121CAF6003C820E /* TMDBClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBClient.swift; sourceTree = "<group>"; };
-		231688722121CB2D003C820E /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
-		231688742121CB43003C820E /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		231688742121CB43003C820E /* MovieResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieResponse.swift; sourceTree = "<group>"; };
 		231688762121CB50003C820E /* MovieResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieResults.swift; sourceTree = "<group>"; };
 		231688782121CB74003C820E /* RequestTokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTokenResponse.swift; sourceTree = "<group>"; };
 		2316887A2121CB87003C820E /* TMDBResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBResponse.swift; sourceTree = "<group>"; };
@@ -70,8 +71,11 @@
 		2316888C2122322D003C820E /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		2316888E2122646A003C820E /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		2316889021226AE7003C820E /* LoginTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTextField.swift; sourceTree = "<group>"; };
+		7503FBEF26BB13980013CE49 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		7503FBF226BB3FD20013CE49 /* Movie+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Movie+Extension.swift"; sourceTree = "<group>"; };
 		759E60A426B9E9FF00668B7F /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		759E60A626B9F03000668B7F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		759E60A926B9F91700668B7F /* TheMovieManager.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TheMovieManager.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,13 +108,14 @@
 		231688472121C92C003C820E /* TheMovieManager */ = {
 			isa = PBXGroup;
 			children = (
-				231688542121C92D003C820E /* Info.plist */,
+				7503FBEB26BB13540013CE49 /* Services */,
 				231688482121C92C003C820E /* AppDelegate.swift */,
 				2316885A2121C941003C820E /* Model */,
 				2316885B2121C951003C820E /* View */,
 				2316885C2121C956003C820E /* Controller */,
 				2316885D2121C962003C820E /* Assets */,
 				759E60A626B9F03000668B7F /* SceneDelegate.swift */,
+				231688542121C92D003C820E /* Info.plist */,
 			);
 			path = TheMovieManager;
 			sourceTree = "<group>";
@@ -118,10 +123,12 @@
 		2316885A2121C941003C820E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7503FBF126BB3FC50013CE49 /* Extensions */,
 				231688712121CB22003C820E /* Data */,
 				231688662121CA71003C820E /* TMDB Client */,
 				231688672121CA79003C820E /* TMDB Requests */,
 				231688682121CA87003C820E /* TMDB Responses */,
+				759E60A826B9F91700668B7F /* TheMovieManager.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -185,7 +192,7 @@
 		231688682121CA87003C820E /* TMDB Responses */ = {
 			isa = PBXGroup;
 			children = (
-				231688742121CB43003C820E /* Movie.swift */,
+				231688742121CB43003C820E /* MovieResponse.swift */,
 				231688762121CB50003C820E /* MovieResults.swift */,
 				231688782121CB74003C820E /* RequestTokenResponse.swift */,
 				2316887A2121CB87003C820E /* TMDBResponse.swift */,
@@ -197,10 +204,25 @@
 		231688712121CB22003C820E /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				231688722121CB2D003C820E /* MovieModel.swift */,
 				759E60A426B9E9FF00668B7F /* Auth.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		7503FBEB26BB13540013CE49 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				7503FBEF26BB13980013CE49 /* DataController.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		7503FBF126BB3FC50013CE49 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7503FBF226BB3FD20013CE49 /* Movie+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,10 +299,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2316884B2121C92C003C820E /* LoginViewController.swift in Sources */,
-				231688732121CB2D003C820E /* MovieModel.swift in Sources */,
+				7503FBF326BB3FD20013CE49 /* Movie+Extension.swift in Sources */,
 				2316886C2121CAF6003C820E /* TMDBClient.swift in Sources */,
 				231688632121CA3D003C820E /* WatchlistViewController.swift in Sources */,
 				231688892121CC10003C820E /* TMDBTypes.swift in Sources */,
+				759E60AA26B9F91700668B7F /* TheMovieManager.xcdatamodeld in Sources */,
 				759E60A526B9E9FF00668B7F /* Auth.swift in Sources */,
 				2316888B212230C8003C820E /* UIViewController+Extension.swift in Sources */,
 				231688852121CBEA003C820E /* LogoutRequest.swift in Sources */,
@@ -296,11 +319,12 @@
 				231688652121CA51003C820E /* FavoritesViewController.swift in Sources */,
 				231688492121C92C003C820E /* AppDelegate.swift in Sources */,
 				2316889121226AE7003C820E /* LoginTextField.swift in Sources */,
+				7503FBF026BB13980013CE49 /* DataController.swift in Sources */,
 				2316887D2121CB9A003C820E /* SessionResponse.swift in Sources */,
 				759E60A726B9F03000668B7F /* SceneDelegate.swift in Sources */,
 				231688792121CB74003C820E /* RequestTokenResponse.swift in Sources */,
 				231688832121CBE3003C820E /* LoginRequest.swift in Sources */,
-				231688752121CB43003C820E /* Movie.swift in Sources */,
+				231688752121CB43003C820E /* MovieResponse.swift in Sources */,
 				2316886A2121CADA003C820E /* LoginButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -501,6 +525,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		759E60A826B9F91700668B7F /* TheMovieManager.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				759E60A926B9F91700668B7F /* TheMovieManager.xcdatamodel */,
+			);
+			currentVersion = 759E60A926B9F91700668B7F /* TheMovieManager.xcdatamodel */;
+			path = TheMovieManager.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 2316883D2121C92C003C820E /* Project object */;
 }

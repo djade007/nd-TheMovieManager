@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         
-        
+        // load the appropriate controller for logged in users
         let rootVC = storyboard.instantiateViewController(identifier: Auth.shared.logged ? "Home" : "LoginViewController")
         
         let rootNC = UINavigationController(rootViewController: rootVC)
@@ -31,6 +31,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         rootNC.setNavigationBarHidden(true, animated: false)
         
         self.window?.rootViewController = rootNC
+        
+        
         self.window?.makeKeyAndVisible()
     }
 
@@ -62,7 +64,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
 
         // Save changes in the application's managed object context when the application transitions to the background.
-        
+        DataController.shared.saveContext()
     }
 
 }

@@ -248,7 +248,7 @@
                     <navigationItem key="navigationItem" title="Watchlist" id="1MN-MV-MzH">
                         <barButtonItem key="leftBarButtonItem" systemItem="reply" id="yYD-6r-jXg">
                             <connections>
-                                <action selector="logoutTapped:" destination="ubh-7q-yMI" id="ABZ-79-5au"/>
+                                <action selector="logoutTapped:" destination="ubh-7q-yMI" id="Y3K-F3-MMq"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -399,7 +399,7 @@
                     <navigationItem key="navigationItem" title="Search" id="XaP-gi-lC6">
                         <barButtonItem key="leftBarButtonItem" systemItem="reply" id="gvt-mS-dVI">
                             <connections>
-                                <action selector="logoutTapped:" destination="yrH-SK-k4n" id="HD6-Sv-IH0"/>
+                                <action selector="logoutTapped:" destination="yrH-SK-k4n" id="F8Y-q0-gAd"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -415,7 +415,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="co5-nL-1jj"/>
+        <segue reference="EXb-qb-M1h"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Camera" width="64" height="64"/>

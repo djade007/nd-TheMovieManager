@@ -131,7 +131,7 @@ class TMDBClient {
         task.resume()
     }
     
-    class func getWatchlist(completion: @escaping ([Movie], Error?) -> Void) {
+    class func getWatchlist(completion: @escaping ([MovieResponse], Error?) -> Void) {
         _ = taskForGETRequest(url: Endpoints.getWatchlist.url, responseType: MovieResults.self) { response, error in
             if let response = response {
                 completion(response.results, nil)
@@ -141,7 +141,7 @@ class TMDBClient {
         }
     }
     
-    class func getFavorites(completion: @escaping ([Movie], Error?) -> Void) {
+    class func getFavorites(completion: @escaping ([MovieResponse], Error?) -> Void) {
         _ = taskForGETRequest(url: Endpoints.getFavorites.url, responseType: MovieResults.self) { response, error in
             if let response = response {
                 completion(response.results, nil)
@@ -200,7 +200,7 @@ class TMDBClient {
         task.resume()
     }
     
-    class func search(query: String, completion: @escaping ([Movie], Error?) -> Void) -> URLSessionDataTask {
+    class func search(query: String, completion: @escaping ([MovieResponse], Error?) -> Void) -> URLSessionDataTask {
         let task = taskForGETRequest(url: Endpoints.search(query).url, responseType: MovieResults.self) { response, error in
             if let response = response {
                 completion(response.results, nil)

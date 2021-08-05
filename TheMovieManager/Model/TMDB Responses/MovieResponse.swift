@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Movie: Codable, Equatable {
+struct MovieResponse: Codable, Equatable {
     
     let posterPath: String?
     let adult: Bool

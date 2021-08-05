@@ -12,7 +12,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
-    var movies = [Movie]()
+    var movies = [MovieResponse]()
     
     var selectedIndex = 0
     
@@ -21,7 +21,7 @@ class SearchViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             let detailVC = segue.destination as! MovieDetailViewController
-            detailVC.movie = movies[selectedIndex]
+            detailVC.movie = movies[selectedIndex].toMovie()
         }
     }
     
