@@ -13,6 +13,7 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var watchlistBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var favoriteBarButtonItem: UIBarButtonItem!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var movie: Movie!
     var saveObserverToken: Any?
@@ -25,19 +26,55 @@ class MovieDetailViewController: UIViewController {
         return movie.favorite
     }
     
+    fileprivate func startLoading(_ loading: Bool) {
+        if loading {
+            activityIndicator.startAnimating()
+        } else {
+            activityIndicator.stopAnimating()
+        }
+        
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.title = movie.title
         
+        self.startLoading(true)
+        
         toggleBarButton(watchlistBarButtonItem, enabled: isWatchlist)
         toggleBarButton(favoriteBarButtonItem, enabled: isFavorite)
         
+        let placeHolder = UIImage(named: "PosterPlaceholder")
+        
         if let posterPath = movie.posterPath {
-            let placeHolder = UIImage(named: "PosterPlaceholder")
-            
-            imageView.kf.setImage(with: K.ProductionServer.resolvePoster(posterPath), placeholder: placeHolder)
+            imageView.kf.setImage(with: K.ProductionServer.resolvePoster(posterPath)) {
+                result in
+                self.startLoading(false)
+                
+                switch result {
+                case .failure(let error):
+                    // on failure:
+                    // show the default image
+                    self.imageView.image = placeHolder
+                    
+                    // notify user of the error
+                    var message = error.localizedDescription
+                    
+                    // clean up error message for no internet connection
+                    if message.contains("offline") {
+                        message = "No internet connection"
+                    } else if message.contains("request timed out") {
+                        message = "The request timed out"
+                    }
+                    
+                    self.alertError(title: "Failed to download poster image", message: message)
+                    break
+                default:
+                    break
+                }
+            }
         }
         
         addSaveNotificationObserver()
@@ -57,11 +94,19 @@ class MovieDetailViewController: UIViewController {
         if success {
             movie.update(watchList: !isWatchlist)
         }
+        
+        if let error = error {
+            self.alertError(title: "Watchlist Update Failed", message: error.localizedDescription)
+        }
     }
     
     func handleFavoriteResponse(success: Bool, error: Error?) {
         if success {
             movie.update(favorite: !isFavorite)
+        }
+        
+        if let error = error {
+            self.alertError(title: "Favorite List Update Failed", message: error.localizedDescription)
         }
     }
     

@@ -166,8 +166,8 @@
                                     <outlet property="delegate" destination="IfO-JR-UB4" id="iEz-pz-64v"/>
                                 </connections>
                             </tableView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="qiY-XF-vP3">
-                                <rect key="frame" x="177.5" y="317" width="20" height="20"/>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="qiY-XF-vP3">
+                                <rect key="frame" x="169" y="308.5" width="37" height="37"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="SGG-Ve-lIg"/>
@@ -241,8 +241,8 @@
                                     <outlet property="delegate" destination="ubh-7q-yMI" id="Z6r-XF-4Hl"/>
                                 </connections>
                             </tableView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="R1S-d2-zyI">
-                                <rect key="frame" x="177.5" y="317" width="20" height="20"/>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="R1S-d2-zyI">
+                                <rect key="frame" x="169" y="308.5" width="37" height="37"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3jn-B3-sZ0"/>
@@ -302,6 +302,9 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PosterPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="Waw-f1-Pfh">
                                 <rect key="frame" x="0.0" y="56" width="375" height="547"/>
                             </imageView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Tra-Cu-1YB">
+                                <rect key="frame" x="169" y="333" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Uig-FD-P2I"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -309,14 +312,17 @@
                             <constraint firstItem="Waw-f1-Pfh" firstAttribute="top" secondItem="Uig-FD-P2I" secondAttribute="top" id="5kJ-Fi-CJN"/>
                             <constraint firstItem="Waw-f1-Pfh" firstAttribute="leading" secondItem="Uig-FD-P2I" secondAttribute="leading" id="BbI-PH-sDm"/>
                             <constraint firstItem="Uig-FD-P2I" firstAttribute="trailing" secondItem="NaU-k0-IKa" secondAttribute="trailing" id="MzP-UR-8Mf"/>
+                            <constraint firstItem="Tra-Cu-1YB" firstAttribute="centerY" secondItem="Uig-FD-P2I" secondAttribute="centerY" id="NWa-7P-FeV"/>
                             <constraint firstItem="NaU-k0-IKa" firstAttribute="top" secondItem="Waw-f1-Pfh" secondAttribute="bottom" id="O9w-qs-sJj"/>
                             <constraint firstItem="NaU-k0-IKa" firstAttribute="leading" secondItem="Uig-FD-P2I" secondAttribute="leading" id="R3Z-Yk-zex"/>
                             <constraint firstItem="Uig-FD-P2I" firstAttribute="trailing" secondItem="Waw-f1-Pfh" secondAttribute="trailing" id="nTH-2H-24w"/>
                             <constraint firstItem="Uig-FD-P2I" firstAttribute="bottom" secondItem="NaU-k0-IKa" secondAttribute="bottom" id="q1m-VW-6Fa"/>
+                            <constraint firstItem="Tra-Cu-1YB" firstAttribute="centerX" secondItem="Uig-FD-P2I" secondAttribute="centerX" id="wsf-jh-B26"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="V7w-ba-Vco"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="Tra-Cu-1YB" id="cIJ-ma-zDN"/>
                         <outlet property="favoriteBarButtonItem" destination="hMm-5H-1Df" id="pkr-Iw-4FZ"/>
                         <outlet property="imageView" destination="Waw-f1-Pfh" id="4f5-YG-VOa"/>
                         <outlet property="watchlistBarButtonItem" destination="uz8-sW-Zea" id="tzf-mg-7Tt"/>
@@ -395,8 +401,8 @@
                                     <outlet property="delegate" destination="yrH-SK-k4n" id="eZg-yh-1TO"/>
                                 </connections>
                             </tableView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="mpZ-GF-5wx">
-                                <rect key="frame" x="177.5" y="317" width="20" height="20"/>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="mpZ-GF-5wx">
+                                <rect key="frame" x="169" y="308.5" width="37" height="37"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="YdI-4U-uEf"/>

@@ -90,7 +90,7 @@ class TMDBClient {
             }
     }
     
-    class func search(query: String, completion: @escaping ([MovieResponse], Error?) -> Void) -> DataRequest {
+    class func search(query: String, completion: @escaping ([MovieResponse], String?) -> Void) -> DataRequest {
         let request = AF.request(TMDBRouter.search(query))
         
         AF.request(TMDBRouter.search(query))
@@ -99,7 +99,12 @@ class TMDBClient {
                 if let data = response.value {
                     completion(data.results, nil)
                 } else {
-                    completion([], response.error)
+                    var message = response.error?.localizedDescription
+                    if response.response?.statusCode == 404 {
+                        message = "No result found"
+                    }
+                    
+                    completion([], message)
                 }
             }
         
@@ -113,7 +118,7 @@ class TMDBClient {
                 if let data = response.value {
                     completion(data.statusCode == 1 || data.statusCode == 12 || data.statusCode == 13, nil)
                 } else {
-                    completion(false, nil)
+                    completion(false, response.error)
                 }
             }
     }
@@ -125,7 +130,7 @@ class TMDBClient {
                 if let data = response.value {
                     completion(data.statusCode == 1 || data.statusCode == 12 || data.statusCode == 13, nil)
                 } else {
-                    completion(false, nil)
+                    completion(false, response.error)
                 }
             }
     }

@@ -28,6 +28,14 @@ class SearchViewController: UIViewController {
         }
     }
     
+    fileprivate func startLoading(_ loading: Bool) {
+        if loading {
+            activityIndicator.startAnimating()
+        } else {
+            activityIndicator.stopAnimating()
+        }
+    }
+    
 }
 
 // MARK: UISearchBarDelegate
@@ -35,14 +43,21 @@ extension SearchViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         currentRequest?.cancel()
-        activityIndicator.startAnimating()
+        
+        // Don't process request for empty searches
+        if searchText.isEmpty {
+            startLoading(false)
+            return
+        }
+        
+        startLoading(true)
         currentRequest = TMDBClient.search(query: searchText) { movies, error in
             self.movies = movies
-            self.activityIndicator.stopAnimating()
+            self.startLoading(false)
             self.tableView.reloadData()
             
             if let error = error {
-                self.alertError(title: "Failed to Search", message: error.localizedDescription)
+                self.alertError(title: "Failed to Search", message: error)
             }
         }
     }
